@@ -5,13 +5,7 @@ pipeline {
     }
     
     
-    stages {
-        stage('Test') {
-            steps {
-                sh 'make check'
-            }
-        }
-        
+    stages {      
         stage('Example') {
             steps {
                 echo "${params.Greeting} World!"
@@ -33,13 +27,5 @@ pipeline {
      
             }
         }
-   post {
-        always {
-            junit '**/target/*.xml'
-        }
-        failure {
-            mail to: team@example.com, subject: 'The Pipeline failed :('
-        }
-    }
     }
 }
